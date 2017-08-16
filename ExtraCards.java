@@ -131,8 +131,8 @@ import java.util.Random;
       if(flag==0)
       {
          while(true)
-         {
-           if(isPowerCards(takeCards(drawPile))==true&&takeCards(drawPile).compareTo(discardPile.top())==0)
+         { 
+           if(isPowerCards(this.hand.get(this.hand.size()-1))==true&&this.hand.get(this.hand.size()-1).compareTo(discardPile.top())==0)
           {
              discardPile.add(this.hand.remove(this.hand.size()-1));break;
            }
