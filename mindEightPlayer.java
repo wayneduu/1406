@@ -9,14 +9,12 @@ public class mindEightPlayer extends Player{
     }
 
 
-    public boolean play(DiscardPile      discardPile,
+public boolean play(DiscardPile      discardPile,
                         Stack<Card>       drawPile,
                         ArrayList<Player> players,
                         int player,
                         boolean direction){
-        if(drawPile.empty()){
-            return true;
-        }
+        if(drawPile.empty()){return true;}
         if(this.getSizeOfHand() == 1){
             discardPile.add(this.hand.remove(0));
             return true;
@@ -33,11 +31,11 @@ public class mindEightPlayer extends Player{
 
             for(int i = 0;i<hand.size();i++){
                 if(hand.get(i).getRank() == 8){
-                    Card Discardd = this.hand.get(i);
-                    Discardd.suit = hand.get(0).getSuit();
-                    this.hand.remove(i);
-                    discardPile.add(Discardd);
-                    break;
+                    Card Discard = this.hand.remove(i);
+                    if(this.hand.size()>0){
+                    Discard.suit = hand.get(0).getSuit();
+                    discardPile.add(this.hand.remove(i));
+                    }
                 }
             }
         }
@@ -55,14 +53,7 @@ public class mindEightPlayer extends Player{
                         ){
                     validCard.add(hand.get(i));
                 }
-                else{
-                    if(drawPile.empty()){
-                        return true;
-                    }
-                }
             }
-
-
             while(validCard.isEmpty()){
                 Card newCard = super.takeCards(drawPile);
                 if(newCard.getSuit().equals(discardPile.top().getSuit()) || (
@@ -70,10 +61,9 @@ public class mindEightPlayer extends Player{
                                 newCard.getRank() != 8)){
                     validCard.add(newCard);
                 }
-
+                
                 hand.add(newCard);
             }
-
             if(!validCard.isEmpty()){
                 for(int i =0; i<validCard.size();i++){
                     if(validCard.get(i).getRank()>largest){
