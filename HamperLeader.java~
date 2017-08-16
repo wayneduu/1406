@@ -39,14 +39,14 @@ public class HamperLeader extends Player{
     
     //find the leader position;
     for(int i=0; i <players.size();i++){
-      if(players.get(i).hand.size()<min){
+      if(player.get(i).hand.size()<min){
         least=i; 
       }
     }
     //if leader before
-    if(least ==Crazy8Game.nextPlayer(self,  direction, players)){
+    if(least ==nextPlayer(self,  direction)){
       nextleader=true;
-    }else if(least ==Crazy8Game.previousPlayer(self,  direction,players)){
+    }else if(least ==previousPlayer(self,  direction)){
       
       //if leader behind;
       proleader=true;
